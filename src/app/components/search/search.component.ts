@@ -10,17 +10,21 @@ import {SpotifyService} from '../../services/spotify.service';
 export class SearchComponent {
 
   artists: any[] = [];
+  loading : boolean;
 
   constructor(private spotify: SpotifyService) { }
 
   // tslint:disable-next-line:typedef
   search(termino: string){
-    this.spotify.getArtist(termino)
+
+    this.loading = true;
+
+    this.spotify.getArtists(termino)
       .subscribe( data => {
         // @ts-ignore
         this.artists = data;
+        if(data) this.loading = false;
       });
-
   }
 
 }

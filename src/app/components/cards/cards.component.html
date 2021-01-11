@@ -1,0 +1,17 @@
+
+
+
+
+<div class="card-columns mt-5 animated fadeIn">
+  <div (click)='viewArtist(song)' class="card puntero" *ngFor='let song of items'>
+    <img [src]="song.images | noimage " class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{song.name}}</h5>
+      <span *ngFor='let artist of song.artists' class="badge badge-primary">{{artist.name}}</span>
+      <p class="card-text"><small class="text-muted">{{song.release_date}}</small></p>
+      <a [href]='song.external_urls.spotify' class='btn btn-outline-info'>Ver Más..</a>
+    </div>
+  </div>
+
+</div>
+
