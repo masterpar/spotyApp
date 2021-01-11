@@ -1,1 +1,23 @@
-<p>search works!</p>
+<div class='row'>
+  <div class='col'>
+    <input
+      #termino
+      type='text'
+      class='form-control'
+      placeholder='search Artist'
+      (keyup)='search(termino.value)'
+      >
+    </div>
+  <div class="card-columns mt-5">
+    <div class="card" *ngFor='let artist of artists'>
+      <img [src]="artist.images | noimage " class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{artist.name}}</h5>
+        <span *ngFor='let artist of artist.artists' class="badge badge-primary">{{artist.name}}</span>
+        <p class="card-text"><small class="text-muted">{{artist.release_date}}</small></p>
+        <a [href]='artist.external_urls.spotify' class='btn btn-outline-info'>Ver Más..</a>
+      </div>
+    </div>
+
+  </div>
+</div>
