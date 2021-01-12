@@ -38,27 +38,32 @@
         <li>Song Title</li>
         <li>Artist</li>
         <li class="text-center">Duration</li>
-        <li class="text-center">Add To Favourites</li>
+        <li class="text-center">Reproduction</li>
       </ul>
 
-      <ul >
-        <li *ngFor='let topTracks of track'>
+      <ul *ngFor='let track of topTracks; let i = index'>
+        <li >
           <a >
-            <span class="play_no">{{ track.disc_number }}</span>
+            <span class="play_no">{{ i + 1 }}</span>
             <span class="play_hover"></span>
           </a>
         </li>
-        <li *ngFor='let topTracks of track'>
+        <li >
           <a [href]="track.external_urls.spotify" target='_blank'>{{ track.name }}</a>
         </li>
-        <li *ngFor='let topTracks of track'><a href="#">{{ track.artist[0].name }}</a></li>
-        <li class="text-center" *ngFor='let topTracks of track'>
+        <li ><a href="#">{{ track.artists[0].name }}</a></li>
+        <li class="text-center">
           <a href="#">{{ track.duration_ms * 1000 | date:'mm:ss' }}</a>
         </li>
         <li class="text-center">
-          <a href="#">
-          <span class="ms_icon1 ms_fav_icon"></span>
-        </a>
+<!--          <audio [src]='track.preview_url' controls></audio>-->
+          <iframe [src]=" track.uri | domseguro"
+                  width="300"
+                  height="80"
+                  frameborder="0"
+                  allowtransparency="true"
+                  allow="encrypted-media">
+          </iframe>
         </li>
       </ul>
     </div>
