@@ -11,13 +11,18 @@ export class HomeComponent  {
 
   newFunctions : any[] = [];
   loading: boolean;
+  error: boolean = false;
 
   constructor(private spotify: SpotifyService) {
 
     this.loading = true;
 
     this.spotify.getNewReleases()
-      .subscribe( data => { this.newFunctions = data; });
+      .subscribe( data => { this.newFunctions = data; }
+      ,(errorService) => {
+          this.error = errorService.error.error.message;
+        }
+        );
     this.loading = false;
   }
 
